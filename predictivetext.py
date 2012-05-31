@@ -12,7 +12,7 @@ import optparse
 
 class PredictiveText:
     '''
-    A predictive text input system as used by cellphones using a numeric keypad
+    A predictive text input system as used by cellphones with a numeric keypad
     '''
     
     def __init__(self):
@@ -68,6 +68,8 @@ class PredictiveText:
                 sorted(results[1], key=k, reverse=True))
     
 if __name__ == '__main__':
+    # Using optparse is somewhat overkill here, but makes it much easier to add 
+    # new options in the future.
     usage = "usage: %prog [options] training_file numeric_string"
     parser = optparse.OptionParser(usage=usage)
     options, args = parser.parse_args()
@@ -84,4 +86,4 @@ if __name__ == '__main__':
     for i, t in ((0, 'Exact'), (1, 'Prefix')):
         print "%s matches for %s:" % (t, sys.argv[1])
         for match, oc in results[i]:
-            print match
+            print '\t%s' % match
